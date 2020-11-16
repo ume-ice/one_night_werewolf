@@ -312,8 +312,9 @@ export default {
       this.page = 1
       this.playerIndex = 0
       this.toggleIsShowJob(false)
-      this.fortunePlayerIndex = false
+      this.fortunePlayerIndex = null
       this.isShowFotunedPlayer = false
+      this.changePlayerIndex = null
       this.isChanged = false
       this.emptyJobs = []
       this.resetJob()
