@@ -6,6 +6,15 @@
 
   <div class="content">
 
+    <!-- vue router test -->
+    <div v-if="0">
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </div>
+      <router-view/>
+    </div>
+
     <div v-show="activePage.page === 'mode'">
       <div class="form-group">
         <div class="form-title">
