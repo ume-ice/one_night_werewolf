@@ -1,7 +1,8 @@
 <template>
-  <div class="header">
-    ワンナイト人狼 {{activePage.name ? ' - ' + activePage.name : ''}}
-  </div>
+
+  <Header
+    :active-page="activePage"
+  />
 
   <div class="content">
 
@@ -207,14 +208,22 @@
 
   </div>
 
-  <div class="footer">
-    <div class="next-button" @click="moveTopPage">トップ</div>
-    <div v-show="activePage.page !== 'result'" class="next-button" @click="nextPage">{{buttonText}}</div>
-  </div>
+  <Footer
+    :active-page="activePage"
+    :button-text="buttonText"
+    :move-top-page="moveTopPage"
+    :next-page="nextPage"
+  />
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 export default {
+  components: {
+    Header,
+    Footer,
+  },
   data () {
     return {
       buttonText: '次へ',
@@ -307,7 +316,7 @@ export default {
   methods: {
     moveTopPage () {
       if (this.activePage.page === 'mode' || !confirm('トップページに戻りますか？')) {
-        return;
+        return
       }
       this.page = 1
       this.playerIndex = 0
@@ -443,7 +452,6 @@ html {
   height: 100%;
 }
 body {
-  height: -webkit-fill-available;
   background: #ECEFF1;
   position: relative;
   max-width: 600px;
@@ -457,19 +465,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.header {
-  height: 100px;
-  line-height: 100px;
-  background: #455A64;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: left;
-  padding: 0px 20px;
-}
-
 .content {
+  margin-top: 130px;
   background: #ECEFF1;
+  padding-bottom: 80px;
 }
 
 .form-group {
@@ -505,26 +504,5 @@ body {
 .strong-text {
   font-weight: bold;
   color: #e8204e;
-}
-
-.footer {
-  position: absolute;
-  height: 80px;
-  width: 100%;
-  background: #CFD8DC;
-  bottom: 0px;
-  color: #fff;
-  text-align: center;
-}
-
-.next-button {
-  display: inline-block;
-  min-width: 100px;
-  height: 40px;
-  margin: 20px;
-  border-radius: 50px;
-  line-height: 40px;
-  font-weight: bold;
-  background: #455A64;
 }
 </style>
